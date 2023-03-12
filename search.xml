@@ -107,21 +107,6 @@
       </tags>
   </entry>
   <entry>
-    <title>安装vue-cli的坑</title>
-    <url>/2019/05/30/%E5%AE%89%E8%A3%85vue-cli%E7%9A%84%E5%9D%91/</url>
-    <content><![CDATA[<h1 id="webpack下载失败"><a href="#webpack下载失败" class="headerlink" title="webpack下载失败"></a>webpack下载失败</h1><p>解决方法一：在node安装成功前提下，将npm替换成cnpm<br>替换代码：npm install -g cnpm –registry&#x3D;<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a><br>检查版本：<br>安装webpack：cnpm install webpack -g</p>
-<p>解决方法二：检查node版本，<br>检查方法 node -v<br>如果版本低于v6 升级</p>
-<h1 id="npm-run-dev失败"><a href="#npm-run-dev失败" class="headerlink" title="npm run dev失败"></a>npm run dev失败</h1><p>显示【’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序】<br>原因：npm install  这步 有几个文件报错没下载成功<br>解决方法：改用cnpm install 下载<br>扩展：如果是这个报错 也有可能是8080端口被占 </p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>新手向</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>this的指向</title>
     <url>/2019/08/01/this%E7%9A%84%E6%8C%87%E5%90%91/</url>
     <content><![CDATA[<h2 id="this既不指向函数自身，也不指向函数的作用域，它指向什么完全取决于函数在哪被调用。"><a href="#this既不指向函数自身，也不指向函数的作用域，它指向什么完全取决于函数在哪被调用。" class="headerlink" title="this既不指向函数自身，也不指向函数的作用域，它指向什么完全取决于函数在哪被调用。"></a>this既不指向函数自身，也不指向函数的作用域，它指向什么完全取决于函数在哪被调用。</h2><h4 id="方法调用模式（the-method-invocation-pattern）又称为隐式绑定"><a href="#方法调用模式（the-method-invocation-pattern）又称为隐式绑定" class="headerlink" title="方法调用模式（the method invocation pattern）又称为隐式绑定"></a>方法调用模式（the method invocation pattern）又称为隐式绑定</h4><p>当一个函数被保存为一个对象的属性时，被称为‘方法’。当一个方法被调用时，this被绑定到该对象。</p>
@@ -173,6 +158,21 @@
 
 
 
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>新手向</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安装vue-cli的坑</title>
+    <url>/2019/05/30/%E5%AE%89%E8%A3%85vue-cli%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<h1 id="webpack下载失败"><a href="#webpack下载失败" class="headerlink" title="webpack下载失败"></a>webpack下载失败</h1><p>解决方法一：在node安装成功前提下，将npm替换成cnpm<br>替换代码：npm install -g cnpm –registry&#x3D;<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a><br>检查版本：<br>安装webpack：cnpm install webpack -g</p>
+<p>解决方法二：检查node版本，<br>检查方法 node -v<br>如果版本低于v6 升级</p>
+<h1 id="npm-run-dev失败"><a href="#npm-run-dev失败" class="headerlink" title="npm run dev失败"></a>npm run dev失败</h1><p>显示【’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序】<br>原因：npm install  这步 有几个文件报错没下载成功<br>解决方法：改用cnpm install 下载<br>扩展：如果是这个报错 也有可能是8080端口被占 </p>
 ]]></content>
       <categories>
         <category>vue</category>
