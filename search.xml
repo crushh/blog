@@ -54,23 +54,6 @@
       </tags>
   </entry>
   <entry>
-    <title>post提交数据的四种编码方式</title>
-    <url>/2019/11/30/post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="application-x2F-x-www-form-urlencoded"><a href="#application-x2F-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h3><p>传表单格式<br>键值对。</p>
-<h3 id="multipart-x2F-form-data"><a href="#multipart-x2F-form-data" class="headerlink" title="multipart&#x2F;form-data"></a>multipart&#x2F;form-data</h3><p>能传文件，不仅仅是表单数据<br>这也是一种比较常见的post数据格式，我们用表单上传文件时，必须使form表单的enctype属性或者ajax的contentType参数等于multipart&#x2F;form-data。使用这种编码格式时发送到后台的数据长得像这样子<br><img data-src="https://img-blog.csdnimg.cn/20191103203942685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我把值json.Stringify(val)了。<br>演示下，如果需要用post发送formdata格式的数据该如何配置。背景是因为我们要上传一个超长的数组。<br>在封装好axios请求也就是写好了请求拦截器后，在api文件中这样封装<br><img data-src="https://img-blog.csdnimg.cn/20191103204307145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用时这样</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let param = new FormData(); //创建form对象</span><br><span class="line">              param.append(&#x27;chatRecord&#x27;,JSON.stringify(this.msgList));//你要传的键名，值 因为我要传一个数组 所以先转换成json字符串</span><br><span class="line">			commitChat(this.consultId,param).then(res=&gt;&#123;</span><br><span class="line">				console.log(res.data)</span><br><span class="line">			&#125;)</span><br></pre></td></tr></table></figure>
-<p>如果没有封装，直接写，可以参考下面的写法：<br>日后有空补充，反正和封装的差不多</p>
-<h3 id="application-x2F-json"><a href="#application-x2F-json" class="headerlink" title="application &#x2F; json"></a>application &#x2F; json</h3><p>如果使用這種編碼方式，那麼傳遞到後台的將是序列化後的json 字符串。我們可以將application &#x2F; json與application &#x2F; x-www-form-urlencoded發送的數據進行比較</p>
-<h3 id="text-x2F-xml"><a href="#text-x2F-xml" class="headerlink" title="text&#x2F;xml"></a>text&#x2F;xml</h3><p>传纯粹的文本，就是字符串。这种格式我没有怎么使用过。</p>
-]]></content>
-      <categories>
-        <category>网络协议</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tcp-拥塞控制</title>
     <url>/2019/07/10/tcp-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/</url>
     <content><![CDATA[<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p>作用于网络，防止过多的数据注入到网络中，避免出现网络负载过大的情况；常用方法：</p>
@@ -104,6 +87,63 @@
       </categories>
       <tags>
         <tag>tcp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>post提交数据的四种编码方式</title>
+    <url>/2019/11/30/post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="application-x2F-x-www-form-urlencoded"><a href="#application-x2F-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h3><p>传表单格式<br>键值对。</p>
+<h3 id="multipart-x2F-form-data"><a href="#multipart-x2F-form-data" class="headerlink" title="multipart&#x2F;form-data"></a>multipart&#x2F;form-data</h3><p>能传文件，不仅仅是表单数据<br>这也是一种比较常见的post数据格式，我们用表单上传文件时，必须使form表单的enctype属性或者ajax的contentType参数等于multipart&#x2F;form-data。使用这种编码格式时发送到后台的数据长得像这样子<br><img data-src="https://img-blog.csdnimg.cn/20191103203942685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我把值json.Stringify(val)了。<br>演示下，如果需要用post发送formdata格式的数据该如何配置。背景是因为我们要上传一个超长的数组。<br>在封装好axios请求也就是写好了请求拦截器后，在api文件中这样封装<br><img data-src="https://img-blog.csdnimg.cn/20191103204307145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用时这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let param = new FormData(); //创建form对象</span><br><span class="line">              param.append(&#x27;chatRecord&#x27;,JSON.stringify(this.msgList));//你要传的键名，值 因为我要传一个数组 所以先转换成json字符串</span><br><span class="line">			commitChat(this.consultId,param).then(res=&gt;&#123;</span><br><span class="line">				console.log(res.data)</span><br><span class="line">			&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果没有封装，直接写，可以参考下面的写法：<br>日后有空补充，反正和封装的差不多</p>
+<h3 id="application-x2F-json"><a href="#application-x2F-json" class="headerlink" title="application &#x2F; json"></a>application &#x2F; json</h3><p>如果使用這種編碼方式，那麼傳遞到後台的將是序列化後的json 字符串。我們可以將application &#x2F; json與application &#x2F; x-www-form-urlencoded發送的數據進行比較</p>
+<h3 id="text-x2F-xml"><a href="#text-x2F-xml" class="headerlink" title="text&#x2F;xml"></a>text&#x2F;xml</h3><p>传纯粹的文本，就是字符串。这种格式我没有怎么使用过。</p>
+]]></content>
+      <categories>
+        <category>网络协议</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于如何监控vuex里对象的属性变化</title>
+    <url>/2021/03/02/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E7%9B%91%E6%8E%A7vuex%E9%87%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8F%98%E5%8C%96/</url>
+    <content><![CDATA[<p>我有一个这样的数据结构，在store里有一个msgList的对象，属性是用户的username，要在每次这个用户发出一条消息记录时push一个新元素进去，并响应这个变化，同时更新当前对话记录。<br><img data-src="https://img-blog.csdnimg.cn/20191101164540175.png" alt="在这里插入图片描述"><br><a href="https://cn.vuejs.org/v2/guide/list.html#">https://cn.vuejs.org/v2/guide/list.html#</a><br>这是官方写的对于数组，对象属性更新检测的注意事项。我自己使用了其中的Object.assign()，来实现响应。</p>
+<p>Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p>
+<p>官方要求我们用这种写法：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vm.userProfile = Object.assign(&#123;&#125;, vm.userProfile, &#123;</span><br><span class="line">  age: 27,</span><br><span class="line">  favoriteColor: &#x27;Vue Green&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>是因为如果使用下列这种写法，只是复制了源目标的值，引用地址并没有变化，本质还是属性的修改，无法检测。而上面写法相当于换了一个对象，自然就能检测到。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.assign(vm.userProfile, &#123;</span><br><span class="line">  age: 27,</span><br><span class="line">  favoriteColor: &#x27;Vue Green&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>预备知识讲完，进入正题。<br>在mutations里先按照普通写法，将userName作为一个对象的一个属性，并给属性赋值一个被放到数组里的payload对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const state=&#123;</span><br><span class="line">    msgList:&#123;&#125;,//所有消息集合</span><br><span class="line">&#125;;</span><br><span class="line">const mutations=&#123;</span><br><span class="line">updateMsgList(state,payload)&#123;</span><br><span class="line">	console.log(payload)</span><br><span class="line">	if(payload.bySelf===true)&#123;//我方发给对方 存储发送消息的To 作为username</span><br><span class="line">		if(!state.msgList[payload.to])&#123;//第一次给对方发消息 第一次建立username属性</span><br><span class="line">		state.msgList[payload.to]=[&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;];</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		state.msgList[payload.to].push(&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;else&#123;//对方给我方发送消息  存储接收消息的from作为username</span><br><span class="line">if(!state.msgList[payload.from])&#123;//第一次给对方发我方消息 第一次建立username属性</span><br><span class="line">		state.msgList[payload.from]=[&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;];</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		state.msgList[payload.from].push(&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	state.msgList = Object.assign(&#123;&#125;, state.msgList);</span><br><span class="line">	//这就是关键，将普通不会被检测到的对象变成可以被检测到的对象，因为每次都把源目标给了一个新对象</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在组件里 这样写 用computed 获得一个响应msgList变化的变量  再在watch中监视这个变量 当这个变量变化时 做一些操作.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	computed:&#123;</span><br><span class="line">...mapGetters(&#123; //记得引入vuex</span><br><span class="line">         	   stateMsgList:&#x27;GetmsgList&#x27; //绑getters时 当msglist变化时 监听到这个对象的变化,我试着直接绑定state.msgList 但是当msgList变化时 没有监听到变化</span><br><span class="line">            &#125;),</span><br><span class="line">            &#125;，</span><br><span class="line">            watch:&#123;</span><br><span class="line">			stateMsgList:function(val) &#123;</span><br><span class="line">		         this.getCurrentMsg();//当msgList变化时 更新当前聊天记录的方法</span><br><span class="line">		      &#125;</span><br><span class="line">		&#125;,</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>新手向</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>安装vue-cli的坑</title>
+    <url>/2019/05/30/%E5%AE%89%E8%A3%85vue-cli%E7%9A%84%E5%9D%91/</url>
+    <content><![CDATA[<h1 id="webpack下载失败"><a href="#webpack下载失败" class="headerlink" title="webpack下载失败"></a>webpack下载失败</h1><p>解决方法一：在node安装成功前提下，将npm替换成cnpm<br>替换代码：npm install -g cnpm –registry&#x3D;<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a><br>检查版本：<br>安装webpack：cnpm install webpack -g</p>
+<p>解决方法二：检查node版本，<br>检查方法 node -v<br>如果版本低于v6 升级</p>
+<h1 id="npm-run-dev失败"><a href="#npm-run-dev失败" class="headerlink" title="npm run dev失败"></a>npm run dev失败</h1><p>显示【’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序】<br>原因：npm install  这步 有几个文件报错没下载成功<br>解决方法：改用cnpm install 下载<br>扩展：如果是这个报错 也有可能是8080端口被占 </p>
+]]></content>
+      <categories>
+        <category>vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>新手向</tag>
       </tags>
   </entry>
   <entry>
@@ -143,31 +183,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于如何监控vuex里对象的属性变化</title>
-    <url>/2021/03/02/%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E7%9B%91%E6%8E%A7vuex%E9%87%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8F%98%E5%8C%96/</url>
-    <content><![CDATA[<p>我有一个这样的数据结构，在store里有一个msgList的对象，属性是用户的username，要在每次这个用户发出一条消息记录时push一个新元素进去，并响应这个变化，同时更新当前对话记录。<br><img data-src="https://img-blog.csdnimg.cn/20191101164540175.png" alt="在这里插入图片描述"><br><a href="https://cn.vuejs.org/v2/guide/list.html#">https://cn.vuejs.org/v2/guide/list.html#</a><br>这是官方写的对于数组，对象属性更新检测的注意事项。我自己使用了其中的Object.assign()，来实现响应。</p>
-<p>Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。</p>
-<p>官方要求我们用这种写法：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vm.userProfile = Object.assign(&#123;&#125;, vm.userProfile, &#123;</span><br><span class="line">  age: 27,</span><br><span class="line">  favoriteColor: &#x27;Vue Green&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>是因为如果使用下列这种写法，只是复制了源目标的值，引用地址并没有变化，本质还是属性的修改，无法检测。而上面写法相当于换了一个对象，自然就能检测到。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Object.assign(vm.userProfile, &#123;</span><br><span class="line">  age: 27,</span><br><span class="line">  favoriteColor: &#x27;Vue Green&#x27;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<p>预备知识讲完，进入正题。<br>在mutations里先按照普通写法，将userName作为一个对象的一个属性，并给属性赋值一个被放到数组里的payload对象。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">const state=&#123;</span><br><span class="line">    msgList:&#123;&#125;,//所有消息集合</span><br><span class="line">&#125;;</span><br><span class="line">const mutations=&#123;</span><br><span class="line">updateMsgList(state,payload)&#123;</span><br><span class="line">	console.log(payload)</span><br><span class="line">	if(payload.bySelf===true)&#123;//我方发给对方 存储发送消息的To 作为username</span><br><span class="line">		if(!state.msgList[payload.to])&#123;//第一次给对方发消息 第一次建立username属性</span><br><span class="line">		state.msgList[payload.to]=[&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;];</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		state.msgList[payload.to].push(&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;else&#123;//对方给我方发送消息  存储接收消息的from作为username</span><br><span class="line">if(!state.msgList[payload.from])&#123;//第一次给对方发我方消息 第一次建立username属性</span><br><span class="line">		state.msgList[payload.from]=[&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;];</span><br><span class="line">	&#125;else&#123;</span><br><span class="line">		state.msgList[payload.from].push(&#123;</span><br><span class="line">			...payload</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">	state.msgList = Object.assign(&#123;&#125;, state.msgList);</span><br><span class="line">	//这就是关键，将普通不会被检测到的对象变成可以被检测到的对象，因为每次都把源目标给了一个新对象</span><br><span class="line"></span><br><span class="line">&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在组件里 这样写 用computed 获得一个响应msgList变化的变量  再在watch中监视这个变量 当这个变量变化时 做一些操作.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">	computed:&#123;</span><br><span class="line">...mapGetters(&#123; //记得引入vuex</span><br><span class="line">         	   stateMsgList:&#x27;GetmsgList&#x27; //绑getters时 当msglist变化时 监听到这个对象的变化,我试着直接绑定state.msgList 但是当msgList变化时 没有监听到变化</span><br><span class="line">            &#125;),</span><br><span class="line">            &#125;，</span><br><span class="line">            watch:&#123;</span><br><span class="line">			stateMsgList:function(val) &#123;</span><br><span class="line">		         this.getCurrentMsg();//当msgList变化时 更新当前聊天记录的方法</span><br><span class="line">		      &#125;</span><br><span class="line">		&#125;,</span><br><span class="line">            </span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>新手向</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>小程序-setData问题</title>
     <url>/2019/10/28/%E5%B0%8F%E7%A8%8B%E5%BA%8F-setData%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">onLoad:function(options)&#123;</span><br><span class="line">	 const that=this; </span><br><span class="line">	wx.request(&#123;</span><br><span class="line">		url:&#x27;你的接口地址&#x27;,</span><br><span class="line">		success(res)&#123;	</span><br><span class="line">			console.log(res.data.data.recommendList)</span><br><span class="line">			const recommendList=res.data.data.recommendList;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				banner:recommendList</span><br><span class="line">			&#125;)</span><br><span class="line">  </span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
@@ -180,21 +195,6 @@
       </categories>
       <tags>
         <tag>小程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>安装vue-cli的坑</title>
-    <url>/2019/05/30/%E5%AE%89%E8%A3%85vue-cli%E7%9A%84%E5%9D%91/</url>
-    <content><![CDATA[<h1 id="webpack下载失败"><a href="#webpack下载失败" class="headerlink" title="webpack下载失败"></a>webpack下载失败</h1><p>解决方法一：在node安装成功前提下，将npm替换成cnpm<br>替换代码：npm install -g cnpm –registry&#x3D;<a href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a><br>检查版本：<br>安装webpack：cnpm install webpack -g</p>
-<p>解决方法二：检查node版本，<br>检查方法 node -v<br>如果版本低于v6 升级</p>
-<h1 id="npm-run-dev失败"><a href="#npm-run-dev失败" class="headerlink" title="npm run dev失败"></a>npm run dev失败</h1><p>显示【’webpack-dev-server’ 不是内部或外部命令，也不是可运行的程序】<br>原因：npm install  这步 有几个文件报错没下载成功<br>解决方法：改用cnpm install 下载<br>扩展：如果是这个报错 也有可能是8080端口被占 </p>
-]]></content>
-      <categories>
-        <category>vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>新手向</tag>
       </tags>
   </entry>
   <entry>
