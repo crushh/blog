@@ -54,23 +54,6 @@
       </tags>
   </entry>
   <entry>
-    <title>post提交数据的四种编码方式</title>
-    <url>/2019/11/30/post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="application-x2F-x-www-form-urlencoded"><a href="#application-x2F-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h3><p>传表单格式<br>键值对。</p>
-<h3 id="multipart-x2F-form-data"><a href="#multipart-x2F-form-data" class="headerlink" title="multipart&#x2F;form-data"></a>multipart&#x2F;form-data</h3><p>能传文件，不仅仅是表单数据<br>这也是一种比较常见的post数据格式，我们用表单上传文件时，必须使form表单的enctype属性或者ajax的contentType参数等于multipart&#x2F;form-data。使用这种编码格式时发送到后台的数据长得像这样子<br><img data-src="https://img-blog.csdnimg.cn/20191103203942685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我把值json.Stringify(val)了。<br>演示下，如果需要用post发送formdata格式的数据该如何配置。背景是因为我们要上传一个超长的数组。<br>在封装好axios请求也就是写好了请求拦截器后，在api文件中这样封装<br><img data-src="https://img-blog.csdnimg.cn/20191103204307145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用时这样</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let param = new FormData(); //创建form对象</span><br><span class="line">              param.append(&#x27;chatRecord&#x27;,JSON.stringify(this.msgList));//你要传的键名，值 因为我要传一个数组 所以先转换成json字符串</span><br><span class="line">			commitChat(this.consultId,param).then(res=&gt;&#123;</span><br><span class="line">				console.log(res.data)</span><br><span class="line">			&#125;)</span><br></pre></td></tr></table></figure>
-<p>如果没有封装，直接写，可以参考下面的写法：<br>日后有空补充，反正和封装的差不多</p>
-<h3 id="application-x2F-json"><a href="#application-x2F-json" class="headerlink" title="application &#x2F; json"></a>application &#x2F; json</h3><p>如果使用這種編碼方式，那麼傳遞到後台的將是序列化後的json 字符串。我們可以將application &#x2F; json與application &#x2F; x-www-form-urlencoded發送的數據進行比較</p>
-<h3 id="text-x2F-xml"><a href="#text-x2F-xml" class="headerlink" title="text&#x2F;xml"></a>text&#x2F;xml</h3><p>传纯粹的文本，就是字符串。这种格式我没有怎么使用过。</p>
-]]></content>
-      <categories>
-        <category>网络协议</category>
-      </categories>
-      <tags>
-        <tag>http</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tcp-拥塞控制</title>
     <url>/2019/07/10/tcp-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6/</url>
     <content><![CDATA[<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p>作用于网络，防止过多的数据注入到网络中，避免出现网络负载过大的情况；常用方法：</p>
@@ -104,6 +87,23 @@
       </categories>
       <tags>
         <tag>tcp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>post提交数据的四种编码方式</title>
+    <url>/2019/11/30/post%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E7%9A%84%E5%9B%9B%E7%A7%8D%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="application-x2F-x-www-form-urlencoded"><a href="#application-x2F-x-www-form-urlencoded" class="headerlink" title="application&#x2F;x-www-form-urlencoded"></a>application&#x2F;x-www-form-urlencoded</h3><p>传表单格式<br>键值对。</p>
+<h3 id="multipart-x2F-form-data"><a href="#multipart-x2F-form-data" class="headerlink" title="multipart&#x2F;form-data"></a>multipart&#x2F;form-data</h3><p>能传文件，不仅仅是表单数据<br>这也是一种比较常见的post数据格式，我们用表单上传文件时，必须使form表单的enctype属性或者ajax的contentType参数等于multipart&#x2F;form-data。使用这种编码格式时发送到后台的数据长得像这样子<br><img data-src="https://img-blog.csdnimg.cn/20191103203942685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>我把值json.Stringify(val)了。<br>演示下，如果需要用post发送formdata格式的数据该如何配置。背景是因为我们要上传一个超长的数组。<br>在封装好axios请求也就是写好了请求拦截器后，在api文件中这样封装<br><img data-src="https://img-blog.csdnimg.cn/20191103204307145.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NydXNoaF9mdW4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>使用时这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">let param = new FormData(); //创建form对象</span><br><span class="line">              param.append(&#x27;chatRecord&#x27;,JSON.stringify(this.msgList));//你要传的键名，值 因为我要传一个数组 所以先转换成json字符串</span><br><span class="line">			commitChat(this.consultId,param).then(res=&gt;&#123;</span><br><span class="line">				console.log(res.data)</span><br><span class="line">			&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果没有封装，直接写，可以参考下面的写法：<br>日后有空补充，反正和封装的差不多</p>
+<h3 id="application-x2F-json"><a href="#application-x2F-json" class="headerlink" title="application &#x2F; json"></a>application &#x2F; json</h3><p>如果使用這種編碼方式，那麼傳遞到後台的將是序列化後的json 字符串。我們可以將application &#x2F; json與application &#x2F; x-www-form-urlencoded發送的數據進行比較</p>
+<h3 id="text-x2F-xml"><a href="#text-x2F-xml" class="headerlink" title="text&#x2F;xml"></a>text&#x2F;xml</h3><p>传纯粹的文本，就是字符串。这种格式我没有怎么使用过。</p>
+]]></content>
+      <categories>
+        <category>网络协议</category>
+      </categories>
+      <tags>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
@@ -261,6 +261,15 @@
       </categories>
       <tags>
         <tag>小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>酸菜鱼</title>
+    <url>/2023/03/12/%E9%85%B8%E8%8F%9C%E9%B1%BC/</url>
+    <content><![CDATA[<p>自我有记忆起，别人家的饭都比我家好吃。原因也无它，因为爸追求食物本味，家里厨房的调味品除了盐和酱油，再没其他。<br>一到饭点，我就端着碗筷去找隔壁的朋友玩，她是我唯一的朋友，她阿婆做的菜也确实好吃，后来想想除了是阿婆经验丰富，也有可能是放足了味精的原因。<br>可想而知我第一次吃到酸菜鱼的时候是怎样的震撼，简直不敢相信世上还有这么好吃的东西。<br>我妈突发奇想在菜市场买了一包酸菜鱼底料，我看着她拆开紫色包装，拿出大包小包，一条鱼从头到尾被剁块，腌制，在油锅里煎的金黄，再下酸菜包炒出香味，这时加水加豆腐加其他调味料。<br>第一次在家里厨房闻到勾的人不断咽口水的香味，我站在厨房门口看了又看，就等什么时候可以开吃。<br>晚饭，我端着满满一碗的酸菜鱼泡米饭看星空台的桃花小妹，米饭吸饱了酸辣的鱼汤，一口下去是自动滑入喉咙，鱼肉嫩滑焦香，鱼骨也被我嚼得粉碎。<br>当我吃着酸菜鱼看桃花小妹时，我隐隐有一种感觉，这种轻松惬意的心情，被满足的胃和舌头，这应该就是幸福的感觉，我想努力的记住它。<br>爸回到家后果不其然看不起酸菜鱼这种加了很多调味料的东西，发了几句牢骚，这道菜就变成只有请客时才会出现在餐桌上。<br>吃到酸菜鱼，让我对未来的日子更加期待，小升初后可以不用吃家里的饭，不用再顾及爸的口味。<br>那时我六年级，自我感觉已经是个成熟的大人了，不再像三四年级那么的幼稚。<br>我感到自己无所不能，对前景充满憧憬，我看着村里的大女孩们成群结队的骑着自行车去初中，她们像鸽子一样轻盈起飞，我羡慕极了。她们迈上自行车昂着头迎风吹起的马尾，是我很长一段时间来对初中的想象。</p>
+]]></content>
+      <tags>
+        <tag>杂谈</tag>
       </tags>
   </entry>
 </search>
